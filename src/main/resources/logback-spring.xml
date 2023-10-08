@@ -1,0 +1,25 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="File" class="ch.qos.logback.core.FileAppender">
+        <file>logs/myapplog.log</file>
+        <encoder>
+            <MarkerFilter marker="debugG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ru.road_to_manga" level="info" additivity="false">
+        <appender-ref ref="File" level="INFO"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="Console" />
+    </root>
+</configuration>
